@@ -14,11 +14,28 @@ font-family: 'Pacifico', cursive; */
 .app {
     background: #f2f2f2;
     font-family: 'Open Sans', sans-serif;
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 } 
+
+.button {
+    display: block;
+    width: 140px;
+    height: 30px;
+    background: #08bdd5;
+    line-height: 30px;
+    text-align: center;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.button.empty {
+    background-color: transparent;
+    border: 1px #08bdd5 solid;
+    color: #08bdd5;
+}
 
 .button.wide {
     display: block;
