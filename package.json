@@ -1,7 +1,7 @@
 {
   "name": "shop-it",
   "version": "0.1.0",
-  "description": "��#\u0000 \u0000S\u0000h\u0000o\u0000p\u0000I\u0000t\u0000 \u0000v\u00000\u0000.\u00001\u0000 \u0000b\u0000y\u0000 \u0000m\u0000h\u0000u\u0000d\u0000y\u0000x\u0000\r\u0000 \u0000",
+  "description": "MERN Stack E-commerce project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
