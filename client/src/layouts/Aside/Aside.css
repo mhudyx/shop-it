@@ -15,10 +15,29 @@ aside {
 }
 
 .aside-account {
-    flex-basis: 20%;
+    flex-basis: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     border-bottom: 1px #dedede solid;
 }
+
+.button.wide.empty {
+    margin-bottom: 20px;
+}
+
+@media (orientation: landscape) {
+
+    .aside-account {
+        flex-basis: 50%;
+        padding: 0 7vw;
+    }
+}
+
+@media(min-width: 900px) {
+
+    aside {
+        z-index: -1;
+    }
+} 

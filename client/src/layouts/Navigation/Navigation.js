@@ -16,7 +16,14 @@ const Navigation = () => {
                     <i className="fa fa-bars" aria-hidden="true" onClick={toggleMenu}></i>
                     <i className="fa fa-times hidden" aria-hidden="true" onClick={toggleMenu}></i>    
                 </div>
-                <div className="menu-logo">ShopIt</div>
+                <NavLink to="/"><div className="menu-logo">ShopIt</div></NavLink>
+                <div className="menu-search">
+                    <input type="text" className="menu-input"/>
+                </div>
+                <div className="menu-account">
+                    <NavLink to="#" className="button empty">Sign In</NavLink>
+                    <NavLink to="#" className="button">Your Cart</NavLink>
+                </div>
             </div>
         </nav>
     )
