@@ -1,0 +1,35 @@
+nav {
+    height: 64px;
+    width: 100%;
+    position: fixed;
+    padding: 0 25px;
+    background: #f2f2f2;
+    border-bottom: 1px #dedede solid;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    line-height: 64px;
+}
+
+.menu-burger {
+    font-size: 2.4rem;
+    color: #333;
+}
+
+.menu-burger > .fa-times {
+    font-size: 2.6rem;
+}
+
+.menu-burger > .hidden {
+    display: none;
+}
+
+.menu-logo {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.2rem;
+    color: #0794a7;
+} 

@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300&family=Pacifico&display=swap');
+/* font-family: 'Open Sans', sans-serif;
+font-family: 'Pacifico', cursive; */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    font-size: 10px;
+}
+
+.app {
+    background: #f2f2f2;
+    font-family: 'Open Sans', sans-serif;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+} 
