@@ -5,6 +5,7 @@ import './Navigation.css';
 const toggleMenu = () => {
     document.querySelector(".fa-bars").classList.toggle("hidden");
     document.querySelector(".fa-times").classList.toggle("hidden");
+    document.querySelector("aside").classList.toggle("show");
 }
 
 const Navigation = () => {

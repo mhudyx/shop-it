@@ -1,0 +1,24 @@
+aside {
+    display: none;
+    background: #f2f2f2;
+    width: 100vw;
+    height: calc(100vh - 64px);
+    position: fixed;
+    margin-top: 64px;
+}
+
+.aside-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.aside-account {
+    flex-basis: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px #dedede solid;
+}

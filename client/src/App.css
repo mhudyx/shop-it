@@ -19,3 +19,25 @@ font-family: 'Pacifico', cursive; */
     display: flex;
     flex-direction: column;
 } 
+
+.button.wide {
+    display: block;
+    width: 80%;
+    height: 45px;
+    background: #08bdd5;
+    text-align: center;
+    border-radius: 3px;
+    color: white;
+    line-height: 45px;
+    font-size: 1.8rem;
+}
+
+.button.wide.empty {
+    background-color: transparent;
+    border: 1px #08bdd5 solid;
+    color: #08bdd5;
+}
+
+.show {
+    display: block;
+} 
