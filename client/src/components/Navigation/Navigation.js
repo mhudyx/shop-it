@@ -21,7 +21,8 @@ const Navigation = () => {
                     <input type="text" className="menu-input"/>
                 </div>
                 <div className="menu-account">
-                    <NavLink to="#" className="button empty">Sign In</NavLink>
+                    <NavLink to="/signin" className="button empty">Sign In</NavLink>
+                    
                     <NavLink to="#" className="button">Your Cart</NavLink>
                 </div>
             </div>
