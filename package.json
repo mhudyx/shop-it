@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/mhudyx/shop-it#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.27"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
