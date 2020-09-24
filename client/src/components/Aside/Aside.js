@@ -7,8 +7,8 @@ const Aside = () => {
         <aside>
             <div className="aside-container">
                 <div className="aside-account">
-                    <NavLink to="#" className="button wide empty">Sign In</NavLink>
-                    <NavLink to="#" className="button wide ">Your Cart</NavLink>
+                    <NavLink to="#" className="button mobile empty">Sign In</NavLink>
+                    <NavLink to="#" className="button mobile ">Your Cart</NavLink>
                 </div>
                 <div className="aside-categories">
                 <h3>Shopping Categories</h3> 

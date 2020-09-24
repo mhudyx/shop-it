@@ -8,6 +8,10 @@ font-family: 'Pacifico', cursive; */
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
+    /* font-size: 10px; */
+}
+
+html {
     font-size: 10px;
 }
 
@@ -23,12 +27,18 @@ font-family: 'Pacifico', cursive; */
 .button {
     display: block;
     width: 140px;
-    height: 30px;
+    height: 36px;
     background: #08bdd5;
-    line-height: 30px;
+    line-height: 36px;
     text-align: center;
     font-size: 1.4rem;
     color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #19cee6;
 }
 
 .button.empty {
@@ -37,7 +47,11 @@ font-family: 'Pacifico', cursive; */
     color: #08bdd5;
 }
 
-.button.wide {
+.button.empty:hover {
+    background-color: #f7f7f7;
+}
+
+.button.mobile {
     display: block;
     width: 80%;
     height: 45px;
@@ -49,7 +63,11 @@ font-family: 'Pacifico', cursive; */
     font-size: 1.8rem;
 }
 
-.button.wide.empty {
+.button.wide {
+    width: 100%;
+}
+
+.button.mobile.empty {
     background-color: transparent;
     border: 1px #08bdd5 solid;
     color: #08bdd5;
@@ -58,3 +76,40 @@ font-family: 'Pacifico', cursive; */
 .show {
     display: block;
 } 
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 14px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-container li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form .button {
+    font-size: 16px;
+}
+
+.aqua {
+    color: #08bdd5;
+    font-weight: bold;
+}
+
+input {
+    padding: 10px;
+    border: 1px #c0c0c0 solid;
+    border-radius: 5px;
+}
