@@ -1,5 +1,6 @@
 import express from 'express';
-import User from '../models/userModel';
+import User from '../models/user.model';
+import { getToken } from '../util';
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.post('/signin', async (req, res) => {
             name: signinUser.name,
             email: signinUser.email,
             isAdmin: signinUser.isAdmin,
-            token: getToken(user)
+            token: getToken(signinUser)
         })
     } else {
         res.status(401).send({ msg: 'Invalid email or password!' });
@@ -23,8 +24,8 @@ router.post('/signin', async (req, res) => {
 })
 
 router.get("/createadmin", async (req, res) => {
-    try {
 
+    try {
         const user = new User({
             name:'mhudyx',
             email:'mhudyx@gmail.com',
