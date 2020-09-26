@@ -4,3 +4,4 @@ export { default as MenPage } from './Men';
 export { default as SalePage } from './Sale';
 export { default as AboutPage } from './About'; 
 export { default as SigninPage } from './Signin'; 
+export { default as RegisterPage } from './Register'; 
