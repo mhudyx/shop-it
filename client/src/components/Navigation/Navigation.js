@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
+import { useSelector } from 'react-redux';
 
 const toggleMenu = () => {
     document.querySelector(".fa-bars").classList.toggle("hidden");
@@ -9,6 +10,10 @@ const toggleMenu = () => {
 }
 
 const Navigation = () => {
+
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
+
     return (
         <nav>
             <div className="menu-container">
@@ -21,8 +26,11 @@ const Navigation = () => {
                     <input type="text" className="menu-input"/>
                 </div>
                 <div className="menu-account">
-                    <NavLink to="/signin" className="button empty">Sign In</NavLink>
-                    
+                    {
+                        userInfo ? <NavLink to="/profile" className="button empty">Your Profile</NavLink>
+                        :
+                        <NavLink to="/signin" className="button empty">Sign In</NavLink>
+                    }
                     <NavLink to="#" className="button">Your Cart</NavLink>
                 </div>
             </div>
