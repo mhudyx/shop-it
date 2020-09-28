@@ -1,5 +1,4 @@
 import express from 'express';
-import { userRegister } from '../../client/src/reducers/user.reducer';
 import User from '../models/user.model';
 import { getToken } from '../util';
 
@@ -46,7 +45,7 @@ router.post('/register', async (req, res) => {
     }
 })
 
-router.get("/createadmin", async (req, res) => {
+router.get('/createadmin', async (req, res) => {
 
     try {
         const user = new User({
