@@ -5,6 +5,7 @@ import config from './config';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import userRoute from './routes/user.route';
+import productRoute from './routes/product.route';
 
 dotenv.config();
 const mongodbUrl = config.MONGODB_URL;
@@ -19,9 +20,6 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use('/api/users', userRoute);
-app.get('/api/products', (req, res) => {
-        
-    res.send(data.products);
-});
+app.use('/api/products', productRoute);
 
 app.listen(5000, () => { console.log("Server is running at http://localhost:5000") });
