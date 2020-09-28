@@ -40,4 +40,8 @@ main {
         flex-wrap: nowrap;
         margin-bottom: 50px;
     }
+
+    .main-wrapper {
+        margin: 0px 100px;
+    }
 }
