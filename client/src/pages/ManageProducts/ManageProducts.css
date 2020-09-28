@@ -1,0 +1,27 @@
+.product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.manage-product {
+    margin: 0 50px;
+    font-size: 1.2rem;
+}
+
+table {
+    width: 80%;
+}
+
+th {
+    text-align: left;
+}
+
+.wide-td {
+    display: flex;
+}
+
+tbody>tr:nth-child(odd) {
+    background-color: #e0e0e0;
+}
