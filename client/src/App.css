@@ -24,6 +24,14 @@ html {
     flex-direction: column;
 } 
 
+.title {
+    text-align: center;
+    /* margin-left: 50px; */
+    margin-bottom: 50px;
+    color: #167b88;
+    text-transform: uppercase;
+}
+
 .button {
     display: block;
     width: 140px;
@@ -71,6 +79,17 @@ html {
     background-color: transparent;
     border: 1px #08bdd5 solid;
     color: #08bdd5;
+}
+
+.button.small {
+    height: 30px;
+    width: 100px;
+    border: 1px solid #08bdd5;
+    background: transparent;
+    color: #08bdd5;
+    font-size: 1.4rem;
+    line-height: 30px;
+    margin-right: 5px;
 }
 
 .show {
