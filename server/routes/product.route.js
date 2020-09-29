@@ -9,6 +9,16 @@ router.get('/', async (req, res) => {
     res.send(products);
 });
 
+router.get('/:id', async (req, res) => {
+    const product = await Product.findOne({ _id: req.params.id });
+    if(product) {
+        res.send(product);
+    } else {
+        res.status(401).send({ msg: 'Product not founded!' });
+    }
+    
+});
+
 router.post('/', isAuth, isAdmin, async (req, res) => {
     const product = new Product({
         name: req.body.name,
@@ -23,7 +33,7 @@ router.post('/', isAuth, isAdmin, async (req, res) => {
     });
     const newProduct = await product.save();
     if(newProduct){
-        return res.status(201).send({ msg:'New product has been created.', data: newProduct });
+        return res.status(201).send({ msg: 'New product has been created.', data: newProduct });
     }
     return res.status(500).send({ msg: 'Error in creating product!' });
 })
@@ -41,7 +51,7 @@ router.put('/:id', isAuth, isAdmin, async (req, res) => {
         product.quantityStock = req.body.quantityStock;
         const updatedProduct = await product.save();
         if (updatedProduct) {
-            return res.status(200).send({ msg:'Product has been updated.', data: updatedProduct });
+            return res.status(200).send({ msg: 'Product has been updated.', data: updatedProduct });
         }
     }
     return res.status(500).send({ msg: 'Error in updating product!' });
