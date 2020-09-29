@@ -38,7 +38,7 @@ main {
         display: flex;
         justify-content: center;
         flex-wrap: nowrap;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
 
     .main-wrapper {
