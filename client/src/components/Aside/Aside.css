@@ -23,6 +23,10 @@ aside {
     border-bottom: 1px #dedede solid;
 }
 
+.aside-account > a {
+    margin-bottom: 15px;
+}
+
 .button.wide.empty {
     margin-bottom: 20px;
 }
