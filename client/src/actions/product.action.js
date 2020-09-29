@@ -1,5 +1,6 @@
 import {
     PRODUCTS_GET_REQUEST, PRODUCTS_GET_SUCCESS, PRODUCTS_GET_FAILURE,
+    PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAILURE,
     PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAILURE,
     PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAILURE
 } from '../constans/product.const';
@@ -9,11 +10,21 @@ import axios from 'axios';
 export const listProducts = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCTS_GET_REQUEST });
-        const { data } = await axios.get("/api/products");
+        const { data } = await axios.get('/api/products');
         dispatch({ type: PRODUCTS_GET_SUCCESS, payload: data });
     }
     catch (error) {
         dispatch({ type: PRODUCTS_GET_FAILURE, payload: error.message });
+    }
+}
+
+export const detailsProduct = (productId) => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
+        const { data } = await axios.get('/api/products/' + productId);
+        dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: PRODUCT_DETAILS_FAILURE, payload: error.message });
     }
 }
 
