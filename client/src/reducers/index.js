@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { productsList,  productDetails, productDelete, productSave } from './product.reducer';
 import { userSignin, userRegister } from './user.reducer';
+import { cartList } from './cart.reducer';
 
 const rootReducer = combineReducers({
     productsList,
@@ -8,7 +9,8 @@ const rootReducer = combineReducers({
     productSave,
     productDelete,
     userSignin,
-    userRegister
+    userRegister,
+    cartList
   });
   
   export default rootReducer;
