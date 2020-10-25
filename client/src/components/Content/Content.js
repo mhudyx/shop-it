@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import './Content.css';
 
-import { HomePage, WomenPage, MenPage, SalePage, AboutPage, SigninPage, RegisterPage, ManageProductsPage, ProductPage } from '../../pages';
+import { HomePage, WomenPage, MenPage, SalePage, AboutPage, SigninPage, RegisterPage, ManageProductsPage, ProductPage, CartPage } from '../../pages';
 
 const categoriesList = [
     {name: "Women", path: "/women"},
@@ -33,6 +33,7 @@ const Content = () => {
                     <Route path="/register" component={RegisterPage} />
                     <Route path="/manage-product" component={ManageProductsPage} />
                     <Route path="/product/:id" component={ProductPage} />
+                    <Route path="/cart/:id" component={CartPage} />
                 </Switch>
             </div> 
         </main>
