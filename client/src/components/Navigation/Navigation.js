@@ -1,7 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import './Navigation.css';
-import { useSelector } from 'react-redux';
+import { signout } from '../../actions/user.action';
 
 const toggleMenu = () => {
     document.querySelector(".fa-bars").classList.toggle("hidden");
@@ -11,8 +12,16 @@ const toggleMenu = () => {
 
 const Navigation = () => {
 
+    const cart = useSelector(state => state.cart);
+    const { cartItems } = cart;
+
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
+
+    const dispatch = useDispatch();
+    const signoutHandler = () => {
+        dispatch(signout());
+    }
 
     return (
         <nav>
@@ -21,17 +30,28 @@ const Navigation = () => {
                     <i className="fa fa-bars" aria-hidden="true" onClick={toggleMenu}></i>
                     <i className="fa fa-times hidden" aria-hidden="true" onClick={toggleMenu}></i>    
                 </div>
-                <NavLink to="/"><div className="menu-logo">ShopIt</div></NavLink>
+                <Link to="/"><div className="menu-logo">ShopIt</div></Link>
                 <div className="menu-search">
                     <input type="text" className="menu-input"/>
                 </div>
                 <div className="menu-account">
-                    {
-                        userInfo ? <NavLink to="/profile" className="button empty">Your Profile</NavLink>
+                    { 
+                        userInfo ? 
+                        <>
+                        <Link to="/profile" className="button empty">Your Profile</Link>
+                        <Link to="/manage-product" className="button empty">Manage</Link>
+                        <Link to="/" className="button empty" onClick={signoutHandler}>Sign Out</Link>
+                        </>
                         :
-                        <NavLink to="/signin" className="button empty">Sign In</NavLink>
+                        <Link to="/signin" className="button empty">Sign In</Link>
                     }
-                    <NavLink to="#" className="button">Your Cart</NavLink>
+                    
+                    <Link to="/cart" className="button">
+                        Your Cart
+                        {cartItems.length > 0 && (
+                            <span className="circle">{cartItems.length}</span>
+                        )}
+                    </Link>
                 </div>
             </div>
         </nav>

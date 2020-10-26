@@ -7,3 +7,4 @@ export { default as SigninPage } from './Signin';
 export { default as RegisterPage } from './Register'; 
 export { default as ManageProductsPage } from './ManageProducts'; 
 export { default as ProductPage } from './Product'; 
+export { default as CartPage } from './Cart'; 

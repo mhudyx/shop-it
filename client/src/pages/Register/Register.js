@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from '../../actions/user.action';
 import './Register.css';
-import { PromiseProvider } from 'mongoose';
 
 const RegisterPage = (props) => {
 

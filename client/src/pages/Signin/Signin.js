@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../../actions/user.action';
 import './Signin.css';
-import { PromiseProvider } from 'mongoose';
 
 const SigninPage = (props) => {
 
