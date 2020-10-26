@@ -5,20 +5,17 @@ import './Product.css';
 import { detailsProduct } from '../../actions/product.action';
 
 const ProductPage = (props) => {
-    const [qty, setQty] = useState(0);
+    const [qty, setQty] = useState(1);
     const productDetails = useSelector(state => state.productDetails);
     const { loading, product, error } = productDetails;
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(detailsProduct(props.match.params.id));
-        return () => {
-
-        };
-    }, []);
+    }, [props.match.params.id]);
 
     const handleAddToCart = () => {
-        props.history.push('/cart/' + props.match.params.id + "?qty" + qty)
+        props.history.push('/cart/' + props.match.params.id + "?qty=" + qty)
     }
 
     return <div className="Product">
@@ -27,7 +24,6 @@ const ProductPage = (props) => {
         error ? <div>{error}</div> : 
         <div className="product-details">
             <div className="details-image">
-                
                 <img src={product.image} alt="product-image"/>
             </div>
             <div className="details-info">
