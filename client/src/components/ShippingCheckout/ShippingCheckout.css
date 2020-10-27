@@ -1,0 +1,18 @@
+.checkout-container {
+    display: flex;
+}
+
+.checkout-container > div {
+    border-top: 3px #c0c0c0 solid;
+    color: #c0c0c0;
+    flex: 1;
+    padding: 10px;
+    font-weight: bold;
+    margin: 0px 4px;
+    text-align: center;
+}
+
+.checkout-container > div.active {
+    border-top-color: orange;
+    color: orange;
+}
