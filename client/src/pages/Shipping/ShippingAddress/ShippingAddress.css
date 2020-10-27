@@ -1,0 +1,15 @@
+.shipping-container {
+    padding: 20px 0;
+}
+
+.form-shipping h2 {
+    margin-bottom: 35px;
+}
+
+.form-shipping > li {
+    margin: 12px;
+}
+
+.continue {
+    margin-top: 35px;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from  '../../../actions/cart.action';
 import ShippingCheckout from '../../../components/ShippingCheckout';
+import './ShippingAddress.css';
 
 const ShippingAddress = props => {
 
@@ -36,7 +37,7 @@ const ShippingAddress = props => {
             <ShippingCheckout step1 step2/>
             <div className="form">
                 <form onSubmit={submitHandler}>
-                    <ul className="form-container">
+                    <ul className="form-container form-shipping">
                         <li><h2>Shipping Address</h2></li>
                         <li>
                             <label htmlFor="fullName">Full Name</label>
@@ -59,7 +60,7 @@ const ShippingAddress = props => {
                             <input type="country" id="country" placeholder="Enter country" value={country} onChange={(e) => setCountry(e.target.value)} required />
                         </li>
                         <li>
-                            <button className="button wide">Continue</button>
+                            <button className="button wide continue">Continue</button>
                         </li>
                     </ul>
                 </form>
