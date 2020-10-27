@@ -1,0 +1,8 @@
+.paymentmethod {
+    display: flex;
+    flex-direction: row;
+}
+
+.paymentmethod > input {
+    flex-basis: 20%;
+}

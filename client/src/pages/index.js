@@ -8,3 +8,5 @@ export { default as RegisterPage } from './Register';
 export { default as ManageProductsPage } from './ManageProducts'; 
 export { default as ProductPage } from './Product'; 
 export { default as CartPage } from './Cart'; 
+export { default as ShippingAddressPage } from './Shipping/ShippingAddress';
+export { default as PaymentMethodPage } from './Shipping/PaymentMethod';
