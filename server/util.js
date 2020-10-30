@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import config from './config';
 
-const getToken = (user) => {
+export const getToken = (user) => {
     return jwt.sign({
         _id: user._id,
         name: user.name,
@@ -13,7 +13,7 @@ const getToken = (user) => {
     })
 }
 
-const isAuth = (req, res, next) => {
+export const isAuth = (req, res, next) => {
     const token = req.headers.authorization;
     
     if(token) {
@@ -31,13 +31,9 @@ const isAuth = (req, res, next) => {
     }
 }
 
-const isAdmin = (req, res, next) => {
+export const isAdmin = (req, res, next) => {
     if(req.user && req.user.isAdmin) {
         return next();
     }
     return res.status(401).send({ msg:'Admin token is not valid.' });
-}
-
-export {
-    getToken, isAuth, isAdmin
 }
