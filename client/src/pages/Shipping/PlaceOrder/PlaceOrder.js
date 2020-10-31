@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ShippingCheckout from '../../../components/ShippingCheckout';
+import { createOrder } from '../../../actions/order.action';
+import { ORDER_CREATE_RESET } from '../../../constans/order.const';
 import './PlaceOrder.css';
 
 const PlaceOrder = (props) => {
@@ -14,6 +16,19 @@ const PlaceOrder = (props) => {
     cart.itemsPrice = toPrice(cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0));
     cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
+
+    const orderCreate = useSelector(state => state.orderCreate);
+    const { loading, success, error, order } = orderCreate;
+
+    const dispatch = useDispatch();
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+
+    useEffect(() => {
+        if(success) {
+            props.history.push('/order/' + order._id);
+            dispatch({ type: ORDER_CREATE_RESET });
+        }
+    }, [dispatch, order, props.history, success]);
 
     const placeOrderHandler = () => {
 
