@@ -1,0 +1,10 @@
+.placeorder-item > .info {
+    width: 100%;
+    padding: 4px 20px;
+    margin: 5px 0;
+}
+
+.placeorder-item > .red {
+    background-color: #e7513a;
+
+}

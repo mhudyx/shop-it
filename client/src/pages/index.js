@@ -11,3 +11,4 @@ export { default as CartPage } from './Cart';
 export { default as ShippingAddressPage } from './Shipping/ShippingAddress';
 export { default as PaymentMethodPage } from './Shipping/PaymentMethod';
 export { default as PlaceOrderPage } from './Shipping/PlaceOrder';
+export { default as OrderPage } from './Shipping/Order';
