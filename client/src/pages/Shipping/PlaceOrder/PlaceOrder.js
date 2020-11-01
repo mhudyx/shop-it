@@ -12,16 +12,15 @@ const PlaceOrder = (props) => {
         props.history.push('/payment');
     }
 
+    const orderCreate = useSelector(state => state.orderCreate);
+    const { loading, success, error, order } = orderCreate;
+
     const toPrice = (num) => Number(num.toFixed(2));
     cart.itemsPrice = toPrice(cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0));
     cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
 
-    const orderCreate = useSelector(state => state.orderCreate);
-    const { loading, success, error, order } = orderCreate;
-
     const dispatch = useDispatch();
-    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
 
     useEffect(() => {
         if(success) {
@@ -31,12 +30,12 @@ const PlaceOrder = (props) => {
     }, [dispatch, order, props.history, success]);
 
     const placeOrderHandler = () => {
-
+        dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
     };
 
     return (
         <div className="shipping-container">
-            <ShippingCheckout step1 step2 step3 step4/>
+            <ShippingCheckout step1 step2 step3 step4 />
             <div className="placeorder">
                 <ul className="placeorder-container">
                     <li className="placeorder-item placeorder-header">
@@ -76,8 +75,10 @@ const PlaceOrder = (props) => {
                         <div><strong>${cart.totalPrice.toFixed(2)}</strong></div>
                     </li>
                     <li>
-                        <button className="button wide continue">Place Order</button>
+                        <button className="button wide continue" onClick={placeOrderHandler} disabled={cart.cartItems.length === 0}>Place Order</button>
                     </li>
+                        {loading && <>Loading...</>}
+                        {error && <>Loading...</>}
                 </ul>
             </div>
         </div>
