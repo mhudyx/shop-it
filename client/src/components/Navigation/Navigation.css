@@ -74,8 +74,8 @@ nav {
 
     .menu-account {
         display: flex;
-        justify-content: space-between;
-        min-width: 300px;
+        justify-content: space-around;
+        min-width: 460px;
         align-items: center;
     }
 
@@ -132,14 +132,14 @@ nav {
 
 @media(min-width: 1200px) {
     nav {
-        padding: 0 8%;
+        padding: 0 7%;
     }
 }
 
 @media(min-width: 1600px) {
 
     nav {
-        padding: 0 20%;
+        padding: 0 15%;
     }
 
     .menu-input {

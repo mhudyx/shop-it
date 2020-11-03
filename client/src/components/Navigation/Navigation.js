@@ -13,6 +13,7 @@ const toggleMenu = () => {
 const Navigation = () => {
 
     const [open, setOpen] = useState(false);
+    const [openAdmin, setOpenAdmin] = useState(false);
 
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
@@ -23,17 +24,17 @@ const Navigation = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(open) {
+        if(open || openAdmin) {
             document.addEventListener("click", handleClickOutside);
         }
         return () => {
             document.removeEventListener("click", handleClickOutside);
         }
-    }, [open]);
+    }, [open, openAdmin]);
 
-    const handleClickOutside = e => {
-        console.log("Clickkk")
+    const handleClickOutside = () => {
         setOpen(false);
+        setOpenAdmin(false);
     };    
 
     const signoutHandler = () => {
@@ -81,7 +82,17 @@ const Navigation = () => {
                         :
                         <Link to="/signin" className="button empty">Sign In</Link>
                     }
-                    
+                    { userInfo && userInfo.isAdmin && (
+                        <div className="list">
+                            <button className="button empty list-manage" onClick={() => setOpenAdmin(!openAdmin)}>Admin Panel <i className="fa fa-caret-down"></i>
+                            </button>
+                            <ul className={openAdmin ? "list-content" : "hide"}>
+                                <li className="list-item">
+                                    <Link to="/manage-product">Products</Link>
+                                </li>
+                            </ul>
+                        </div>
+                    )}
                     
                 </div>
             </div>
