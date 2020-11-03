@@ -98,6 +98,36 @@ nav {
         margin-bottom: 0px;
     }
 
+    .list-content {
+        position: absolute;
+        display: block;
+        width: 140px;
+        padding: 5px;
+        z-index: 1;
+        background-color: #0794a7;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .list-item a {
+        margin: 0;
+        padding: 0;
+        height: 36px;
+        font-size: 12px;
+        color: #fff;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .hide {
+        display: none;
+    }
+
+
 }
 
 @media(min-width: 1200px) {

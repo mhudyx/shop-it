@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './Navigation.css';
@@ -12,6 +12,8 @@ const toggleMenu = () => {
 
 const Navigation = () => {
 
+    const [open, setOpen] = useState(false);
+
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
 
@@ -19,9 +21,25 @@ const Navigation = () => {
     const { userInfo } = userSignin;
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if(open) {
+            document.addEventListener("click", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        }
+    }, [open]);
+
+    const handleClickOutside = e => {
+        console.log("Clickkk")
+        setOpen(false);
+    };    
+
     const signoutHandler = () => {
         dispatch(signout());
     }
+
 
     return (
         <nav>
@@ -35,23 +53,36 @@ const Navigation = () => {
                     <input type="text" className="menu-input"/>
                 </div>
                 <div className="menu-account">
-                    { 
-                        userInfo ? 
-                        <>
-                        <Link to="/profile" className="button empty">Your Profile</Link>
-                        <Link to="/manage-product" className="button empty">Manage</Link>
-                        <Link to="/" className="button empty" onClick={signoutHandler}>Sign Out</Link>
-                        </>
-                        :
-                        <Link to="/signin" className="button empty">Sign In</Link>
-                    }
-                    
                     <Link to="/cart" className="button">
                         Your Cart
                         {cartItems.length > 0 && (
                             <span className="circle">{cartItems.length}</span>
                         )}
                     </Link>
+                    { 
+                        userInfo ? 
+                        <>
+                        <div className="list">
+                            <button className="button empty list-manage" onClick={() => setOpen(!open)}>Manage <i className="fa fa-caret-down"></i>
+                            </button>
+                            <ul className={open ? "list-content" : "hide"}>
+                                <li className="list-item">
+                                    <Link to="/profile" >Edit Profile</Link>
+                                </li>
+                                <li className="list-item">
+                                    <Link to="/"  onClick={signoutHandler}>Sign Out</Link>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        {/* <Link to="/manage-product" className="button empty">Manage</Link> */}
+                        
+                        </>
+                        :
+                        <Link to="/signin" className="button empty">Sign In</Link>
+                    }
+                    
+                    
                 </div>
             </div>
         </nav>
