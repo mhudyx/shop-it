@@ -1,6 +1,6 @@
 import express from 'express';
 import User from '../models/user.model';
-import { getToken } from '../util';
+import { getToken, isAuth } from '../util';
 
 const router = express.Router();
 
@@ -19,7 +19,7 @@ router.post('/signin', async (req, res) => {
             token: getToken(signinUser)
         })
     } else {
-        res.status(401).send({ msg: 'Invalid email or password!' });
+        res.status(401).send({ message: 'Invalid email or password!' });
     }
 })
 
@@ -41,7 +41,7 @@ router.post('/register', async (req, res) => {
         })
     }
     else {
-        res.status(401).send({ msg: 'Invalid user data!' });
+        res.status(401).send({ message: 'Invalid user data!' });
     }
 })
 
@@ -59,9 +59,35 @@ router.get('/createadmin', async (req, res) => {
         res.send(newUser);
 
     } catch (error) {
-        res.send({ msg: error.message });
+        res.send({ message: error.message });
     }
     
 })
+
+router.get('/:id', async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if(user) {
+        res.send(user);
+    } else {
+        res.status(404).send({ message: 'User not found '});
+    }
+})
+
+router.put('/profile', isAuth, async(req, res) => {
+    const user = await User.findById(req.user._id);
+    if(user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.password = req.body.password || user.password;
+        const updatedUser = await user.save();
+        res.send({ 
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken(updatedUser),
+        })
+    }
+});
 
 export default router;
