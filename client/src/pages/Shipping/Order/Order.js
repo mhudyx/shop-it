@@ -1,19 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailsOrder } from '../../../actions/order.action';
+import { detailsOrder, payOrder } from '../../../actions/order.action';
+import { ORDER_PAY_RESET } from '../../../constans/order.const';
 import './Order.css';
 
 const Order = (props) => {
 
+    const [pay, setPay] = useState(false);
+
     const orderId = props.match.params.id;
-    const orderDetails = useSelector((state) => state.orderDetails);
-    const { order, loading, error } = orderDetails;
+
+    const orderDetails = useSelector(state => state.orderDetails);
+    const { loading, order, error } = orderDetails;
+
     const dispatch = useDispatch();
 
+    const orderPay = useSelector(state => state.orderPay);
+    const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
+
     useEffect(() => {
-        dispatch(detailsOrder(orderId));
-    }, [dispatch, orderId]);
+        if(!order || successPay || (order && order._id !== orderId)) {
+            dispatch({ type: ORDER_PAY_RESET });
+            dispatch(detailsOrder(orderId));
+        } 
+    }, [dispatch, order, orderId, successPay]);
+
+    const payHandler = () => {
+        alert('Order paid!');
+        setPay(true);
+        dispatch(payOrder(order, 'completed'));
+    }
 
     return loading ? (
         <>Loading...</>
@@ -68,6 +85,14 @@ const Order = (props) => {
                     <li>
                         <div>Order Total</div>
                         <div><strong>${order.totalPrice.toFixed(2)}</strong></div>
+                    </li>
+                    <li>
+                        {!pay ? (
+                            <button className="button wide continue" onClick={payHandler} >Pay</button>
+                            )
+                            :
+                            (<></>)
+                        }
                     </li>
                 </ul>
             </div>
