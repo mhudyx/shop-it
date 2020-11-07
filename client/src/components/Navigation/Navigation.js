@@ -76,8 +76,6 @@ const Navigation = () => {
                             </ul>
                         </div>
                         
-                        {/* <Link to="/manage-product" className="button empty">Manage</Link> */}
-                        
                         </>
                         :
                         <Link to="/signin" className="button empty">Sign In</Link>
@@ -89,6 +87,7 @@ const Navigation = () => {
                             <ul className={openAdmin ? "list-content" : "hide"}>
                                 <li className="list-item">
                                     <Link to="/manage-product">Products</Link>
+                                    <Link to="/orderlist">Orders</Link>
                                 </li>
                             </ul>
                         </div>
