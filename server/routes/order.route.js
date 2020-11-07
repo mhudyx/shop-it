@@ -1,7 +1,7 @@
 import e from 'express';
 import express from 'express';
 import Order from '../models/order.model.js';
-import { isAuth } from '../util.js';
+import { isAuth, isAdmin } from '../util.js';
 
 const router = express.Router();
 
@@ -44,5 +44,10 @@ router.put('/:id/pay', isAuth, async (req, res) => {
         res.status(404).send({ message: 'Order not found' });
     }
 })
+
+router.get('/', isAuth, isAdmin, async(req, res) => {
+    const orders = await Order.find({}).populate('user', 'name');
+    res.send(orders);
+});
 
 export default router;
