@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
+import AdminRoute from '../AdminRoute';
 import './Content.css';
 
 import { HomePage, WomenPage, MenPage, SalePage, AboutPage, SigninPage, RegisterPage, ManageProductsPage, ProductPage, CartPage, ShippingAddressPage, PaymentMethodPage, PlaceOrderPage, OrderPage, OrderHistoryPage, ProfilePage } from '../../pages';
@@ -31,7 +32,6 @@ const Content = () => {
                     <Route path="/about" component={AboutPage} />
                     <Route path="/signin" component={SigninPage} />
                     <Route path="/register" component={RegisterPage} />
-                    <Route path="/manage-product" component={ManageProductsPage} />
                     <Route path="/product/:id" component={ProductPage} />
                     <Route path="/cart/:id?" component={CartPage} />
                     <Route path="/shipping" component={ShippingAddressPage} />
@@ -39,6 +39,7 @@ const Content = () => {
                     <Route path="/placeorder" component={PlaceOrderPage} />
                     <Route path="/order/:id" component={OrderPage} />
                     <Route path="/profile" component={ProfilePage} />
+                    <AdminRoute path="/manage-product" path="/manage-product" component={ManageProductsPage} />
                 </Switch>
             </div> 
         </main>
