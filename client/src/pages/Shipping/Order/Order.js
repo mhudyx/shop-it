@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { detailsOrder, payOrder } from '../../../actions/order.action';
-import { ORDER_PAY_RESET } from '../../../constans/order.const';
+import { detailsOrder, payOrder, deliverOrder } from '../../../actions/order.action';
+import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../../../constans/order.const';
 import './Order.css';
 
 const Order = (props) => {
@@ -14,23 +14,34 @@ const Order = (props) => {
     const orderDetails = useSelector(state => state.orderDetails);
     const { loading, order, error } = orderDetails;
 
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+
     const dispatch = useDispatch();
 
     const orderPay = useSelector(state => state.orderPay);
     const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
 
+    const orderDeliver = useSelector(state => state.orderDeliver);
+    const { loading: loadingDeliver, success: successDeliver, error: errorDeliver } = orderDeliver;
+
     useEffect(() => {
-        if(!order || successPay || (order && order._id !== orderId)) {
+        if(!order || successPay || successDeliver || (order && order._id !== orderId)) {
             dispatch({ type: ORDER_PAY_RESET });
+            dispatch({ type: ORDER_DELIVER_RESET });
             dispatch(detailsOrder(orderId));
         } 
-    }, [dispatch, order, orderId, successPay]);
+    }, [dispatch, order, orderId, successPay, successDeliver]);
 
     const payHandler = () => {
         alert('Order paid!');
         setPay(true);
         dispatch(payOrder(order, 'completed'));
     }
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order._id));
+      };
 
     return loading ? (
         <>Loading...</>
@@ -88,12 +99,19 @@ const Order = (props) => {
                     </li>
                     <li>
                         {!pay ? (
-                            <button className="button wide continue" onClick={payHandler} >Pay</button>
+                            <button className="button wide continue" onClick={payHandler}>Pay</button>
                             )
                             :
                             (<></>)
                         }
                     </li>
+                    {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                        <li>
+                            {loadingDeliver ? <div>Loading...</div> : 
+                            <button className="button wide continue" onClick={deliverHandler}>Deliver Order</button>
+                            }
+                        </li>
+                    ) }
                 </ul>
             </div>
         </div>
