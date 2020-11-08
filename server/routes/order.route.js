@@ -17,6 +17,7 @@ router.post('/', isAuth, async (req,res) => {
             shippingPrice: req.body.shippingPrice,
             totalPrice: req.body.totalPrice,
             user: req.user._id,
+            createdAt: Date.now(),
         });
         const createdOrder = await order.save();
         res.status(201).send({ message: 'New order created', order: createdOrder });
@@ -55,6 +56,19 @@ router.delete('/:id', isAuth, isAdmin, async(req, res) => {
     if(order) {
         const deleteOrder = await order.remove();
         res.send({ message: 'Order deleted', order: deleteOrder });
+    } else {
+        res.status(404).send({ message: 'Order not found!' });
+    }
+})
+
+router.put('/:id/deliver', isAuth, isAdmin, async(req, res) => {
+    const order = await Order.findById(req.params.id);
+    if(order) {
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+
+        const updatedOrder = await order.save();
+        res.send({ message: 'Order delivered', order: updatedOrder });
     } else {
         res.status(404).send({ message: 'Order not found!' });
     }
