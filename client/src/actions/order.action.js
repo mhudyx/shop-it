@@ -3,6 +3,7 @@ import {
     ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAILURE, 
     ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_PAY_FAILURE,
     ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_LIST_FAILURE,
+    ORDER_DELETE_REQUEST, ORDER_DELETE_SUCCESS, ORDER_DELETE_FAILURE,
 } from '../constans/order.const';
 import {
     CART_EMPTY
@@ -55,5 +56,17 @@ export const listOrders = () => async (dispatch, getState) => {
     } catch (error) {
         const message = error.response && error.response.data.message ? error.response.data.message : error.message;
         dispatch({ type: ORDER_LIST_FAILURE, payload: message });
+    }
+}
+
+export const deleteOrder = (orderId) => async (dispatch, getState) => {
+    try {
+        dispatch({ type: ORDER_DELETE_REQUEST, payload: orderId });
+        const { userSignin: { userInfo } } = getState();
+        const { data } = await axios.delete('/api/orders/' + orderId, { headers: { Authorization: 'Bearer ' + userInfo.token} })
+        dispatch({ type: ORDER_DELETE_SUCCESS, payload: data });
+    } catch (error) {
+        const message = error.response && error.response.data.message ? error.response.data.message : error.message;
+        dispatch({ type: ORDER_DELETE_FAILURE, payload: message });
     }
 }

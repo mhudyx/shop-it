@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { listOrderst } from '../../actions/order.action';
+import { listOrders, deleteOrder } from '../../actions/order.action';
+import { ORDER_DELETE_RESET } from '../../constans/order.const';
 import './ManageOrders.css';
 
 const ManageOrdersPage = (props) => {
@@ -8,14 +9,20 @@ const ManageOrdersPage = (props) => {
     const orderList = useSelector((state) => state.orderList);
     const { loading, orders, error } = orderList;
 
+    const orderDelete = useSelector((state) => state.orderDelete);
+    const { loading: loadingDelete, success: successDelete,  error: errorDelete } = orderDelete;
+
     const dispatch = useDispatch();
     
     useEffect(() => {
+      dispatch({ type: ORDER_DELETE_RESET });
       dispatch(listOrders());
-    }, [dispatch]);
+    }, [dispatch, successDelete]);
 
     const deleteHandler = (order) => {
-      // TODO: delete handler
+      if (window.confirm('Are you sure to delete?')) {
+        dispatch(deleteOrder(order._id));
+      }
     };
 
     return (
@@ -40,7 +47,7 @@ const ManageOrdersPage = (props) => {
                         <tr key={order._id}>
                         <td>{order._id}</td>
                         <td>{order.user.name}</td>
-                        <td>{order.createdAt.substring(0, 10)}</td>
+                        <td>{order.createdAt}</td>
                         <td>{order.totalPrice.toFixed(2)}</td>
                         <td>{order.isPaid ? order.paidAt.substring(0, 10) : 'No'}</td>
                         <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : 'No'}</td>

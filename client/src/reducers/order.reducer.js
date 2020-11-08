@@ -3,6 +3,7 @@ import {
     ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAILURE,
     ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_PAY_FAILURE, ORDER_PAY_RESET,
     ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_LIST_FAILURE,
+    ORDER_DELETE_REQUEST, ORDER_DELETE_SUCCESS, ORDER_DELETE_FAILURE, ORDER_DELETE_RESET,
 } from '../constans';
 
 const initialState = {
@@ -81,3 +82,22 @@ export const orderList = (state = initialState, action) => {
           return state;
     }
 }
+
+export const orderDelete = (state = initialState, action) => {
+    switch (action.type) {
+      case ORDER_DELETE_REQUEST:
+        return { loading: true };
+
+      case ORDER_DELETE_SUCCESS:
+        return { loading: false, success: true };
+
+      case ORDER_DELETE_FAILURE:
+        return { loading: false, error: action.payload };
+
+      case ORDER_DELETE_RESET:
+        return {};
+
+      default:
+        return state;
+    }
+  };

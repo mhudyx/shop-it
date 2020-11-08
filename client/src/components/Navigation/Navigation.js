@@ -87,7 +87,7 @@ const Navigation = () => {
                             <ul className={openAdmin ? "list-content" : "hide"}>
                                 <li className="list-item">
                                     <Link to="/manage-product">Products</Link>
-                                    <Link to="/orderlist">Orders</Link>
+                                    <Link to="/manage-order">Orders</Link>
                                 </li>
                             </ul>
                         </div>
